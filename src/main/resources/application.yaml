@@ -4,7 +4,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: "health,prometheus"
+        include: '*'
 spring:
   main:
     allow-circular-references: true
@@ -220,3 +220,79 @@ hapi:
 #  protocol: 'http'
 #  schema_management_strategy: CREATE
 #  username: SomeUsername
+
+---
+spring:
+  config:
+    activate:
+      on-profile: cloud
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://c3e06131-b185-419d-b57e-872752ef7b51.c13paqsd05a0ept695ng.databases.appdomain.cloud:30481/ibmclouddb
+    username: admin
+    password: fhirdatabaseadmin2023
+    driverClassName: org.postgresql.Driver
+    max-active: 15
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate.dialect: ca.uhn.fhir.jpa.model.dialect.HapiFhirPostgres94Dialect
+      hibernate.search.enabled: false
+
+---
+spring:
+  config:
+    activate:
+      on-profile: cloud-brillio
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://7fe5b209-b4c6-4ccd-8761-ac5175c2dd38.c2f3lg8w0g8s0rkj98i0.databases.appdomain.cloud:32477/ibmclouddb
+    username: ibm_cloud_2c60ee0c_e349_4f87_bbd0_8d67a3b091f2
+    password: fd86ec02166a84a54838e0b801b68b2e54dbb70f956f82e28f75c356146f16b6
+    driverClassName: org.postgresql.Driver
+    max-active: 15
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate.dialect: ca.uhn.fhir.jpa.model.dialect.HapiFhirPostgres94Dialect
+      hibernate.search.enabled: false
+
+---
+spring:
+  config:
+    activate:
+      on-profile: cloud-internal
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://c3e06131-b185-419d-b57e-872752ef7b51.c13paqsd05a0ept695ng.private.databases.appdomain.cloud:30481/ibmclouddb
+    username: admin
+    password: fhirdatabaseadmin2023
+    driverClassName: org.postgresql.Driver
+    max-active: 15
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate.dialect: ca.uhn.fhir.jpa.model.dialect.HapiFhirPostgres94Dialect
+      hibernate.search.enabled: false
+
+---
+spring:
+  config:
+    activate:
+      on-profile: cloud-internal-brillio
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://7fe5b209-b4c6-4ccd-8761-ac5175c2dd38.c2f3lg8w0g8s0rkj98i0.private.databases.appdomain.cloud:32477/ibmclouddb
+    username: ibm_cloud_2c60ee0c_e349_4f87_bbd0_8d67a3b091f2
+    password: fd86ec02166a84a54838e0b801b68b2e54dbb70f956f82e28f75c356146f16b6
+    driverClassName: org.postgresql.Driver
+    max-active: 15
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate.dialect: ca.uhn.fhir.jpa.model.dialect.HapiFhirPostgres94Dialect
+      hibernate.search.enabled: false

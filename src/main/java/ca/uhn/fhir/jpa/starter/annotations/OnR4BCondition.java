@@ -8,11 +8,8 @@ import org.springframework.core.type.AnnotatedTypeMetadata;
 public class OnR4BCondition implements Condition {
 	@Override
 	public boolean matches(ConditionContext conditionContext, AnnotatedTypeMetadata metadata) {
-		String version = conditionContext.
-			getEnvironment()
-			.getProperty("hapi.fhir.fhir_version")
-			.toUpperCase();
 
-		return FhirVersionEnum.R4B.name().equals(version);
+		String version = conditionContext.getEnvironment().getProperty("hapi.fhir.fhir_version");
+		return version != null && FhirVersionEnum.R4B.name().equals(version.toUpperCase());
 	}
 }

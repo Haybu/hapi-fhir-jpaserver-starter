@@ -8,12 +8,8 @@ import org.springframework.core.type.AnnotatedTypeMetadata;
 public class OnR5Condition implements Condition {
   @Override
   public boolean matches(ConditionContext conditionContext, AnnotatedTypeMetadata metadata) {
-    FhirVersionEnum version = FhirVersionEnum.forVersionString(conditionContext.
-      getEnvironment()
-      .getProperty("hapi.fhir.fhir_version")
-      .toUpperCase());
-
-    return version == FhirVersionEnum.R5;
+	  String version = conditionContext.getEnvironment().getProperty("hapi.fhir.fhir_version");
+	  return version != null && FhirVersionEnum.forVersionString(version.toUpperCase()) == FhirVersionEnum.R5;
 
   }
 }
